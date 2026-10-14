@@ -1,0 +1,79 @@
+variant: 6
+random_state: 42
+feature_lag_months: 2
+availability_assumption: Forecast at month start using t-2 or older data; publication
+  dates not yet verified.
+train_end: '2022-12-01'
+validation_end: '2024-06-01'
+test_start: '2024-07-01'
+test_used: false
+selection_metric: validation_RMSE
+refit_before_test: false
+selected_models:
+  business: zero_change
+  households: lightgbm
+baseline_columns:
+  symmetric:
+  - loan_change_lag2
+  - base_change_lag2
+  - inflation_change_lag2
+  asymmetric:
+  - loan_change_lag2
+  - base_change_lag2
+  - inflation_up_lag2
+  - inflation_down_lag2
+lightgbm_common_params:
+  objective: regression
+  metric: rmse
+  n_estimators: 1000
+  learning_rate: 0.03
+  reg_lambda: 1.0
+  random_state: 42
+  n_jobs: 1
+  verbosity: -1
+  deterministic: true
+  force_col_wise: true
+  importance_type: gain
+parameter_candidates:
+- num_leaves: 3
+  max_depth: 2
+  min_child_samples: 15
+- num_leaves: 4
+  max_depth: 2
+  min_child_samples: 20
+- num_leaves: 5
+  max_depth: 3
+  min_child_samples: 15
+- num_leaves: 7
+  max_depth: 3
+  min_child_samples: 20
+lightgbm_selected:
+  business:
+    num_leaves: 3
+    max_depth: 2
+    min_child_samples: 15
+    best_iteration: 1
+    validation_rmse: 0.36427589678519257
+  households:
+    num_leaves: 5
+    max_depth: 3
+    min_child_samples: 15
+    best_iteration: 760
+    validation_rmse: 1.5143192873449598
+feature_columns:
+- inflation_yoy_lag2
+- inflation_mom_lag2
+- inflation_change_lag2
+- inflation_up_lag2
+- inflation_down_lag2
+- base_rate_lag2
+- base_change_lag2
+- inflation_mean3_lag2
+- inflation_std3_lag2
+- real_base_proxy_lag2
+- loan_rate_lag2
+- loan_change_lag2
+- loan_change_lag3
+- loan_change_mean3_lag2
+- loan_change_std3_lag2
+- loan_base_spread_lag2

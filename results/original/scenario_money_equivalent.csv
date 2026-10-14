@@ -1,0 +1,9 @@
+﻿group,model,selected_on_validation,MAE,annual_income_error_equivalent_KZT
+business,zero_change,True,0.2532946111111112,2532946.111111112
+business,symmetric,False,0.24478701951377813,2447870.1951377816
+business,asymmetric,False,0.2423986519927262,2423986.5199272623
+business,lightgbm,False,0.25006994859813436,2500699.485981344
+households,zero_change,False,0.957043,9570430.0
+households,symmetric,False,1.1543814057230501,11543814.0572305
+households,asymmetric,False,1.1471990498079332,11471990.498079333
+households,lightgbm,True,1.0848844533237878,10848844.533237878

@@ -1,0 +1,14 @@
+﻿group,item,PSI,flag_above_025
+business,prediction_lightgbm,0.16868214178701263,False
+business,prediction_zero_change,0.05736678310215182,False
+business,loan_change_std3_lag2,0.6790406076638249,True
+business,loan_change_lag3,0.38770169792095205,True
+business,inflation_yoy_lag2,1.3858741577164218,True
+business,inflation_mom_lag2,0.578792170350036,True
+business,inflation_change_lag2,0.251985902318642,True
+households,prediction_lightgbm,0.19112258730108564,False
+households,loan_change_lag2,0.342293001736434,True
+households,inflation_yoy_lag2,1.3858741577164218,True
+households,real_base_proxy_lag2,3.6619051360870305,True
+households,loan_change_mean3_lag2,0.40342486519126747,True
+households,loan_change_std3_lag2,1.116547780156824,True
