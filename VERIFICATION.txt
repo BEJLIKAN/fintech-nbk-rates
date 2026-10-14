@@ -1,0 +1,9 @@
+Проверка 14.10.2026. Python 3.12.14
+python run.py: успешно, все четыре этапа.
+business: predict(df) совпал с исходным test, max abs diff 0
+households: predict(df) совпал с исходным test, max abs diff 5.55e-17
+test_metrics.csv: совпадение подтверждено
+wald_train.csv: совпадение подтверждено
+validation_comparison.csv: совпадение подтверждено
+test_predictions.csv: совпадение подтверждено
+Параметры и тестовые границы не изменялись. Это повторное вычисление уже просмотренного test, не независимый эксперимент.
