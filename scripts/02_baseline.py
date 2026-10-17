@@ -82,8 +82,9 @@ assert (development["month"] <= TRAIN_END).sum() == 84
 assert (development["month"] > TRAIN_END).sum() == 18
 assert len(test_locked) == 18
 
-print("Train: январь 2016 — декабрь 2022")
-print("Validation: январь 2023 — июнь 2024")
+print("Обучение: май 2016 — ноябрь 2022 после создания лагов")
+print("Validation для подбора: январь 2023 — май 2024")
+print("Декабрь 2022 и июнь 2024 исключены как временные зазоры")
 print("Test: июль 2024 — декабрь 2025; пока не используем")
 
 FEATURE_LAG = 2
@@ -137,8 +138,19 @@ for group, target in targets.items():
 
     usable = X.notna().all(axis=1)
 
-    train_mask = usable & (development["month"] <= TRAIN_END)
-    valid_mask = usable & (development["month"] > TRAIN_END)
+    train_mask = (
+        usable
+        & (development["month"] <= pd.Timestamp("2022-11-01"))
+    )
+
+    valid_mask = (
+        usable
+        & (development["month"] > TRAIN_END)
+        & (development["month"] <= pd.Timestamp("2024-05-01"))
+    )
+
+    assert train_mask.sum() == 79
+    assert valid_mask.sum() == 17
 
     datasets[group] = {
         "X_train": X.loc[train_mask].copy(),
