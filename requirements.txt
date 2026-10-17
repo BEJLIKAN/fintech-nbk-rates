@@ -1,13 +1,17 @@
-numpy==2.3.5
+# Версии из успешного запуска Google Colab
+# Python 3.13.16
+# Установка в чистую среду отдельно не проверена
+
+numpy==2.1.3
 pandas==2.2.3
-matplotlib==3.10.8
+scipy==1.16.3
+matplotlib==3.10.0
 statsmodels==0.15.0
-scikit-learn==1.8.0
+scikit-learn==1.6.1
 lightgbm==4.6.0
+shap==0.52.0
 PyYAML==6.0.3
-joblib==1.5.3
-shap==0.48.0
+joblib==1.6.0
 seaborn==0.13.2
-ipython==9.17.1
-scipy==1.17.0
-numba==0.68.0
+ipython==7.34.0
+numba==0.61.2
