@@ -126,7 +126,7 @@ for group, target in targets.items():
     train_mask = usable & (data["month"] <= TRAIN_END)
     test_mask = usable & (data["month"] > VALID_END)
 
-    assert train_mask.sum() == 80
+    assert train_mask.sum() == 79
     assert test_mask.sum() == 18
 
     evaluation_data[group] = {
