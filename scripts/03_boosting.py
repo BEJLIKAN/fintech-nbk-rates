@@ -90,8 +90,16 @@ for group, target in targets.items():
     X = make_features(development, group, FEATURE_LAG)
     usable = X.notna().all(axis=1)
 
-    train_mask = usable & (development["month"] <= TRAIN_END)
-    valid_mask = usable & (development["month"] > TRAIN_END)
+    train_mask = (
+        usable
+        & (development["month"] <= pd.Timestamp("2022-11-01"))
+    )
+
+    valid_mask = (
+        usable
+        & (development["month"] > TRAIN_END)
+        & (development["month"] <= pd.Timestamp("2024-05-01"))
+    )
 
     datasets[group] = {
         "X_train": X.loc[train_mask].copy(),
@@ -101,8 +109,8 @@ for group, target in targets.items():
         "dates_valid": development.loc[valid_mask, "month"].copy(),
     }
 
-    assert train_mask.sum() == 80
-    assert valid_mask.sum() == 18
+    assert train_mask.sum() == 79
+    assert valid_mask.sum() == 17
 
     print(
         group_names[group],
@@ -346,7 +354,9 @@ config = {
         "Forecast at month start using t-2 or older data; "
         "publication dates not yet verified."
     ),
-    "train_end": "2022-12-01",
+    "train_end": "2022-11-01",
+    "validation_start": "2023-01-01",
+    "validation_fit_end": "2024-05-01",
     "validation_end": "2024-06-01",
     "test_start": "2024-07-01",
     "test_used": False,
