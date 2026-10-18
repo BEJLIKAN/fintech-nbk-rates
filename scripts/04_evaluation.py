@@ -520,14 +520,6 @@ print("Сценарий: 1 млрд ₸, постоянный остаток, с
 print("Не учтены фондирование, дефолты, расходы и изменение спроса.")
 print("Это масштаб ошибки, а не фактическая прибыль.")
 
-final_bundle = {
-    "baseline_models": baseline_models,
-    "boosting_models": boosting_models,
-    "config": config,
-}
-
-joblib.dump(final_bundle, OUTPUT / "model.pkl")
-
 evaluation_config = dict(config)
 evaluation_config["test_used"] = True
 evaluation_config["money_scenario"] = {
@@ -535,6 +527,14 @@ evaluation_config["money_scenario"] = {
     "horizon_years": ASSUMED_HORIZON_YEARS,
     "meaning": "Annual interest-income error equivalent, not realized profit"
 }
+
+final_bundle = {
+    "baseline_models": baseline_models,
+    "boosting_models": boosting_models,
+    "config": evaluation_config,
+}
+
+joblib.dump(final_bundle, OUTPUT / "model.pkl")
 
 with open(OUTPUT / "config.yaml", "w", encoding="utf-8") as file:
     yaml.safe_dump(
