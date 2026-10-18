@@ -3,14 +3,16 @@ random_state: 42
 feature_lag_months: 2
 availability_assumption: Forecast at month start using t-2 or older data; publication
   dates not yet verified.
-train_end: '2022-12-01'
+train_end: '2022-11-01'
+validation_start: '2023-01-01'
+validation_fit_end: '2024-05-01'
 validation_end: '2024-06-01'
 test_start: '2024-07-01'
 test_used: true
 selection_metric: validation_RMSE
 refit_before_test: false
 selected_models:
-  business: zero_change
+  business: lightgbm
   households: lightgbm
 baseline_columns:
   symmetric:
@@ -49,17 +51,17 @@ parameter_candidates:
   min_child_samples: 20
 lightgbm_selected:
   business:
-    num_leaves: 3
-    max_depth: 2
+    num_leaves: 5
+    max_depth: 3
     min_child_samples: 15
-    best_iteration: 1
-    validation_rmse: 0.36427589678519257
+    best_iteration: 11
+    validation_rmse: 0.3632755232648986
   households:
     num_leaves: 5
     max_depth: 3
     min_child_samples: 15
-    best_iteration: 760
-    validation_rmse: 1.5143192873449598
+    best_iteration: 182
+    validation_rmse: 1.6179388483593775
 feature_columns:
 - inflation_yoy_lag2
 - inflation_mom_lag2
