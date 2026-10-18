@@ -226,6 +226,7 @@ plt.tight_layout()
 
 plt.savefig(OUTPUT / "selected_models_test.png", dpi=160)
 plt.show()
+plt.close("all")
 
 prediction_tables = []
 
@@ -327,6 +328,7 @@ for group in targets:
     )
 
     plt.show()
+    plt.close("all")
 
 selected_explanations = {}
 
@@ -411,6 +413,7 @@ for group, parts in evaluation_data.items():
                 bbox_inches="tight"
             )
             plt.show()
+            plt.close("all")
 
         contributions = pd.Series(
             explanation.values[position],
